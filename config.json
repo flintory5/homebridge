@@ -1,0 +1,221 @@
+{
+    "bridge": {
+        "name": "Homebridge",
+        "username": "CC:22:3D:E3:CE:30",
+        "port": 51826,
+        "pin": "031-45-154"
+    },
+    
+    "description": "This is an example configuration file with all supported devices. You can use this as a template for creating your own configuration file containing devices you actually own.",
+
+    "platforms": [
+        {
+            "platform" : "Nest",
+            "name" : "Nest",
+            "username" : "flintory@gmail.com",
+            "password" : "Stlc@rdsnes5"
+        },
+        {
+            "platform": "Wink",
+            "name": "Wink",
+            "client_id": "8d096346e17ff9ec6c2901ebf5f6d02a",
+            "client_secret": "2fe6a636cebe643db8a2f236c009f7ca",
+            "username": "flintory@gmail.com",
+            "password": "Stlc@rdswin5"
+        },
+        {
+            "platform": "isy-js",
+            "name": "isy-js",
+            "host": "10.0.1.33",
+            "username": "flintory5",
+            "password": "Stlc@rds5",
+            "elkEnabled": false,
+           "ignoreDevices": [
+            	{ "nameContains": "Basement Kids Room", "address": "ZW014_1"},
+            	{ "nameContains": "Dining Table", "address": "ZW013_1"},
+            	{ "nameContains": "Fire Place", "address": "ZW016_1"},
+            	{ "nameContains": "First Floor Hallway", "address": "ZW015_1"},
+            	{ "nameContains": "Kitchen Sink", "address": "ZW012_1"},
+            	{ "nameContains": "Living Room Fan", "address": "ZW011_1"}
+            ]
+        }
+        
+    ],
+
+    "accessories": [
+        {
+            "accessory": "WeMo",
+            "name": "white noise",
+            "description": "This shim supports Belkin WeMo devices on the same network as this server. You can create duplicate entries for this device and change the 'name' attribute to reflect what device is plugged into the WeMo, for instance 'Air Conditioner' or 'Coffee Maker'. This name will be used by Siri. Make sure to update the 'wemo_name' attribute with the EXACT name of the device in the WeMo app itself. This can be the same value as 'name' buld it doesn't have to be.",
+            "wemo_name": "Boys Humidifier"
+        },
+    	{
+    		"accessory": "Http",
+    		"name": "PBS upstairs",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"E157410E-368F-4ED4-ACF9-920BBB37D6A0\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"E157410E-368F-4ED4-ACF9-920BBB37D6A0\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	},
+    	{
+    		"accessory": "Http",
+    		"name": "CBS upstairs",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"D29BA1E2-9A6E-4CB7-AC8E-C2149CF6717F\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"D29BA1E2-9A6E-4CB7-AC8E-C2149CF6717F\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	},
+    	{
+    		"accessory": "Http",
+    		"name": "NBC upstairs",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"F9A1A3EA-1BB1-4ABB-A368-7018D465BD1B\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"F9A1A3EA-1BB1-4ABB-A368-7018D465BD1B\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	},
+     	{
+    		"accessory": "Http",
+    		"name": "ABC upstairs",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"8BDFD013-72DF-4CA3-A24B-84CF804044D0\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"8BDFD013-72DF-4CA3-A24B-84CF804044D0\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	},
+    	{
+    		"accessory": "Http",
+    		"name": "CW upstairs",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"809CE9E9-E288-4AA9-8586-1F297012CE5E\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"809CE9E9-E288-4AA9-8586-1F297012CE5E\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	},
+    	{
+    		"accessory": "Http",
+    		"name": "FOX upstairs",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"C3185B87-D6F7-4CCA-945B-FAB957F32685\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"C3185B87-D6F7-4CCA-945B-FAB957F32685\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	},
+    	{
+    		"accessory": "Http",
+    		"name": "TV downstairs",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"2DB32067-DD1B-4124-B2A7-63FE8FCAFFCA\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"2DB32067-DD1B-4124-B2A7-63FE8FCAFFCA\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	},
+    	{
+    		"accessory": "Http",
+    		"name": "XBOX",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"4AAB6F4A-27E9-40AA-9053-BA67C484C771\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"4AAB6F4A-27E9-40AA-9053-BA67C484C771\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	},
+    	{
+    		"accessory": "Http",
+    		"name": "Apple TV downstairs",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"24FB4330-A84C-4495-AD52-5E815352DF06\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"24FB4330-A84C-4495-AD52-5E815352DF06\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	},
+    	{
+    		"accessory": "Http",
+    		"name": "TV upstairs",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"2B720573-17BF-459B-8808-8F63BAE5D8BF\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"2B720573-17BF-459B-8808-8F63BAE5D8BF\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	},
+    	{
+    		"accessory": "Http",
+    		"name": "Apple TV upstairs",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"A82DAB94-9235-4237-A832-95871A5D70D2\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"A82DAB94-9235-4237-A832-95871A5D70D2\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	},
+    	{
+    		"accessory": "Http",
+    		"name": "Amazon Fire TV upstairs",
+    		"on_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"on_body": "{\"activity_uuid\" : \"F63E532A-C713-4440-9884-9D812D6817FF\"}",
+    		"off_url": "http://10.0.1.69:47147/api/v1/runactivity",
+    		"off_body": "{\"activity_uuid\" : \"F63E532A-C713-4440-9884-9D812D6817FF\"}",    		
+    		"username": "",
+    		"password": "",
+    		"sendimmediately": "",
+    		"http_method": "POST",
+            "service": "Switch",
+            "brightnessHandling": "no"
+       	}     	       	       	       	       	       	       	       	      	       	        
+    ]
+}
