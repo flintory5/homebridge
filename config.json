@@ -16,14 +16,6 @@
             "password" : "Stlc@rdsnes5"
         },
         {
-            "platform": "Wink",
-            "name": "Wink",
-            "client_id": "8d096346e17ff9ec6c2901ebf5f6d02a",
-            "client_secret": "2fe6a636cebe643db8a2f236c009f7ca",
-            "username": "flintory@gmail.com",
-            "password": "Stlc@rdswin5"
-        },
-        {
             "platform": "isy-js",
             "name": "isy-js",
             "host": "10.0.1.33",
@@ -31,12 +23,6 @@
             "password": "Stlc@rds5",
             "elkEnabled": false,
            "ignoreDevices": [
-            	{ "nameContains": "Basement Kids Room", "address": "ZW014_1"},
-            	{ "nameContains": "Dining Table", "address": "ZW013_1"},
-            	{ "nameContains": "Fire Place", "address": "ZW016_1"},
-            	{ "nameContains": "First Floor Hallway", "address": "ZW015_1"},
-            	{ "nameContains": "Kitchen Sink", "address": "ZW012_1"},
-            	{ "nameContains": "Living Room Fan", "address": "ZW011_1"}
             ]
         }
         
