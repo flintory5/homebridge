@@ -18,13 +18,23 @@ homebridgeHomePath = homebridgeInstallPath + "/homebridge"
 print(homebridgeInstallPath)
 print(homebridgeHomePath)
 
-
+print("***** Installing Homebridge ******")
 installNode(homebridgeInstallPath)
+print("***** Installing Homebridge Config File ******")
 installConfigFile(homebridgeHomePath + "/config.json")
+print("***** Installing Homebridge HTTP Plugin ******")
 installPlugin("homebridge-http")
+print("***** Installing Homebridge ISY Plugin ******")
 installPlugin("homebridge-isy-js")
+print("***** Installing Homebridge Nest Plugin ******")
 installPlugin("homebridge-nest")
+print("***** Installing Homebridge Legacy Plugins ******")
 installPlugin("homebridge-legacy-plugins")
+print("***** Installing ISY Device Types file ******")
 installISYDeviceTypes(homebridgeHomePath + "/isydevicetypes.json")
+
+#Add git upstream original master
+print("***** Setting up git upstream master nfarina/homebridge ******")
+subprocess.call(["git remote add upstream https://github.com/nfarina/homebridge"], shell=True)
 
 print "All Done!!"
