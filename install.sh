@@ -45,7 +45,7 @@ cd `brew --prefix`
 $(brew versions node | grep ${NODE_VERSION} | cut -c 16- -)
 echo "**** Installing Node ****"
 brew install node
-
+fi
 
 #
 # Check if Node Package Manager is installed and at the right version
