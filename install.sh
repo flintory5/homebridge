@@ -21,14 +21,17 @@ DIR="$( cd -P "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 which -s brew
 if [[ $? != 0 ]] ; then
 # Install Homebrew
+echo "**** Installing Homebrew ****"
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
+echo "**** Updating Homebrew ****"
 brew update
 fi
 
 #
 # Check if Git is installed
 #
+echo "**** Checking for git and installing if necessary ****"
 which -s git || brew install git
 
 #
@@ -40,13 +43,9 @@ if [[ $? != 0 ]] ; then
 # Install Node
 cd `brew --prefix`
 $(brew versions node | grep ${NODE_VERSION} | cut -c 16- -)
+echo "**** Installing Node ****"
 brew install node
 
-# Reset Homebrew formulae versions
-git reset HEAD `brew --repository` && git checkout -- `brew --repository`
-fi
-
-cd /tmp
 
 #
 # Check if Node Package Manager is installed and at the right version
@@ -68,7 +67,7 @@ cd /tmp
 #
 # Check if python is installed
 #
-
+echo "Checking for Python and installing if necessary"
 which -s python
 if [[ $? != 0 ]] ; then
 # Install Python
