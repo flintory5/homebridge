@@ -38,7 +38,7 @@ fi
 # Check if Node is installed and at the right version
 #
 echo "Checking for Node version ${NODE_VERSION}"
-node --version | grep ${NODE_VERSION}
+node -v | grep ${NODE_VERSION}
 if [[ $? != 0 ]] ; then
 # Install Node
 cd `brew --prefix`
@@ -73,4 +73,7 @@ if [[ $? != 0 ]] ; then
 # Install Python
 brew install python
 fi
+
+echo "**** Running Homebrew install script ****"
+python ~/homebridge/install_homebridge.py
 
