@@ -31,8 +31,8 @@ fi
 #
 # Check if Git is installed
 #
-echo "**** Checking for git and installing if necessary ****"
-which -s git || brew install git
+#echo "**** Checking for git and installing if necessary ****"
+#which -s git || brew install git
 
 #
 # Check if Node is installed and at the right version
