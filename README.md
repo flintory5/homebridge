@@ -3,17 +3,19 @@
 
 # Homebridge
 
+![](https://media.giphy.com/media/10l79ICohTu4iQ/giphy.gif)
+
 Homebridge is a lightweight NodeJS server you can run on your home network that emulates the iOS HomeKit API. It supports Plugins, which are community-contributed modules that provide a basic bridge from HomeKit to various 3rd-party APIs provided by manufacturers of "smart home" devices. 
 
 Since Siri supports devices added through HomeKit, this means that with Homebridge you can ask Siri to control devices that don't have any support for HomeKit at all. For instance, using just some of the available plugins, you can say:
 
- * _Siri, unlock the front door._
+ * _Siri, unlock the back door._ [pictured above]
  * _Siri, open the garage door._
  * _Siri, turn on the coffee maker._ 
  * _Siri, turn on the living room lights._
  * _Siri, good morning!_
 
-You can explore all available plugins at the NPM website by [searching for the keyword `homebridge-plugin`](https://www.npmjs.com/browse/keyword/homebridge-plugin).
+You can explore all available plugins at the NPM website by [searching for the keyword `homebridge-plugin`](https://www.npmjs.com/search?q=homebridge-plugin).
 
 # Community
 
@@ -45,6 +47,8 @@ However, Homebridge won't do anything until you've created a `config.json` file 
 
 **NOTE**: Your `config.json` file MUST live in your home directory inside `.homebridge`. The full error message will contain the exact path where your config is expected to be found.
 
+**REALLY IMPORTANT**: You must use a "plain text" editor to create or modify `config.json`. Do NOT use apps like TextEdit on Mac or Wordpad on Windows; these apps will corrupt the formatting of the file in hard-to-debug ways. I suggest using the free [Atom text editor](http://atom.io).
+
 Once you've added your config file, you should be able to run Homebridge again:
 
     $ homebridge
@@ -69,7 +73,7 @@ You install Plugins the same way you installed Homebridge - as a global NPM modu
 
     sudo npm install -g homebridge-lockitron
 
-You can explore all available plugins at the NPM website by [searching for the keyword `homebridge-plugin`](https://www.npmjs.com/browse/keyword/homebridge-plugin).
+You can explore all available plugins at the NPM website by [searching for the keyword `homebridge-plugin`](https://www.npmjs.com/search?q=homebridge-plugin).
 
 **IMPORTANT**: Many of the plugins that Homebridge used to include with its default installation have been moved to the single plugin [homebridge-legacy-plugins](https://www.npmjs.com/package/homebridge-legacy-plugins).
 
@@ -97,17 +101,31 @@ One final thing to remember is that Siri will almost always prefer its default p
 
 We don't have a lot of documentation right now for creating plugins, but there are many existing plugins you can study.
 
-The best place to start is the included [Example Plugins](https://github.com/nfarina/homebridge/tree/master/example-plugins). Right now this contains a single plugin that registers a fake door lock Accessory. This will show you how to use the Homebridge Plugin API.
+The best place to start is the included [Example Plugins](https://github.com/nfarina/homebridge/tree/master/example-plugins). Right now this contains a single plugin that registers a platform that offers fake light accessories. This will show you how to use the Homebridge Plugin API.
 
 For more example on how to construct HomeKit Services and Characteristics, see the many Accessories in the [Legacy Plugins](https://github.com/nfarina/homebridge-legacy-plugins/tree/master/accessories) repository.
 
 You can also view the [full list of supported HomeKit Services and Characteristics in the HAP-NodeJS protocol repository](https://github.com/KhaosT/HAP-NodeJS/blob/master/lib/gen/HomeKitTypes.js).
 
-There isn't currently an example for how to publish a Platform (which allows the user to bridge many discovered devices at once, like a house full of smart lightbulbs), but the process is almost identical to registering an Accessory. Simply modify the example `index.js` in [homebridge-lockitron](https://github.com/nfarina/homebridge/tree/master/example-plugins/homebridge-lockitron) to say something like:
-
-    homebridge.registerPlatform("homebridge-myplugin", "MyPlatform", MyPlatform);
+And you can find an example plugin that publishes an individual accessory at [here](https://github.com/nfarina/homebridge/tree/6500912f54a70ff479e63e2b72760ab589fa558a/example-plugins/homebridge-lockitron).
 
 See more examples on how to create Platform classes in the [Legacy Plugins](https://github.com/nfarina/homebridge-legacy-plugins/tree/master/platforms) repository.
+
+# Plugin Development
+
+When writing your plugin, you'll want Homebridge to load it from your development directory instead of publishing it to `npm` each time. You can tell Homebridge to look for your plugin at a specific location using the command-line parameter `-P`. For example, if you are in the Homebridge directory (as checked out from Github), you might type:
+
+```sh
+DEBUG=* ./bin/homebridge -D -P ../my-great-plugin/
+```
+
+This will start up Homebridge and load your in-development plugin from a nearby directory. Note that you can also direct Homebridge to load your configuration from somewhere besides the default `~/.homebridge`, for example:
+
+```sh
+DEBUG=* ./bin/homebridge -D -U ~/.homebridge-dev -P ../my-great-plugin/
+```
+
+This is very useful when you are already using your development machine to host a "real" Homebridge instance (with all your accessories) that you don't want to disturb.
 
 # Common Issues
 
@@ -119,6 +137,19 @@ Two reasons why Homebridge may not be discoverable:
 
   2. iOS device has gotten your Homebridge `username` (looks like a MAC address) "stuck" somehow, where it's in the database but inactive. Fix: change your `username` in the "bridge" section of `config.json` to be some new value.
 
+### Errors on startup
+
+The following errors are experienced when starting Homebridge and can be safely ignored. The cost of removing the issue at the core of the errors isn't worth the effort.
+
+```
+*** WARNING *** The program 'nodejs' uses the Apple Bonjour compatibility layer of Avahi
+*** WARNING *** Please fix your application to use the native API of Avahi!
+*** WARNING *** For more information see http://0pointerde/avahi-compat?s=libdns_sd&e=nodejs
+*** WARNING *** The program 'nodejs' called 'DNSServiceRegister()' which is not supported (or only supported partially) in the Apple Bonjour compatibility layer of Avahi
+*** WARNING *** Please fix your application to use the native API of Avahi!
+*** WARNING *** For more information see http://0pointerde/avahi-compat?s=libdns_sd&e=nodejs&f=DNSServiceRegister
+```
+
 # Why Homebridge?
 
 Technically, the device manufacturers should be the ones implementing the HomeKit API. And I'm sure they will - eventually. When they do, this project will be obsolete, and I hope that happens soon. In the meantime, Homebridge is a fun way to get a taste of the future, for those who just can't bear to wait until "real" HomeKit devices are on the market.
@@ -126,3 +157,5 @@ Technically, the device manufacturers should be the ones implementing the HomeKi
 # Credit
 
 The original HomeKit API work was done by [KhaosT](http://twitter.com/khaost) in his [HAP-NodeJS](https://github.com/KhaosT/HAP-NodeJS) project.
+
+
